@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module proxy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>proxy</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/micah/mbushou%40ncsu.edu/P_furnace_proxy/proxy.py">/home/micah/mbushou@ncsu.edu/P_furnace_proxy/proxy.py</a></font></td></tr></table>
+    <p><tt>#-------------------------<br>
+#&nbsp;Furnace&nbsp;(c)&nbsp;2017-2018&nbsp;Micah&nbsp;Bushouse<br>
+#<br>
+#&nbsp;This&nbsp;program&nbsp;is&nbsp;free&nbsp;software:&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify<br>
+#&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by<br>
+#&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;either&nbsp;version&nbsp;3&nbsp;of&nbsp;the&nbsp;License,&nbsp;or<br>
+#&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.<br>
+#<br>
+#&nbsp;This&nbsp;program&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,<br>
+#&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of<br>
+#&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the<br>
+#&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.<br>
+#<br>
+#&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License<br>
+#&nbsp;along&nbsp;with&nbsp;this&nbsp;program.&nbsp;&nbsp;If&nbsp;not,&nbsp;see&nbsp;&lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.<br>
+#-------------------------</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="argparse.html">argparse</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="threading.html">threading</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+<a href="zmq.html">zmq</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="threading.html#Thread">threading.Thread</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="proxy.html#PubProxyRuntime">PubProxyRuntime</a>
+</font></dt><dt><font face="helvetica, arial"><a href="proxy.html#RouterProxyRuntime">RouterProxyRuntime</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PubProxyRuntime">class <strong>PubProxyRuntime</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Proxies&nbsp;between&nbsp;the&nbsp;proxy-publisher&nbsp;and&nbsp;the&nbsp;backend-subscriber&nbsp;sockets.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="proxy.html#PubProxyRuntime">PubProxyRuntime</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PubProxyRuntime-__init__"><strong>__init__</strong></a>(self, ctx, kp, debug=False, pxy_ip='127.0.0.1', proxy_base_port=5561, be_ip='127.0.0.1', be_base_port=5563)</dt><dd><tt>Constructor<br>
+:param&nbsp;ctx:&nbsp;The&nbsp;raw&nbsp;ZMQ&nbsp;context&nbsp;to&nbsp;use.<br>
+:param&nbsp;kp:&nbsp;The&nbsp;keypair&nbsp;to&nbsp;use,&nbsp;in&nbsp;the&nbsp;form&nbsp;{'be_key':&nbsp;'[path]',&nbsp;'app_key':&nbsp;'[path]'}</tt></dd></dl>
+
+<dl><dt><a name="PubProxyRuntime-run"><strong>run</strong></a>(self)</dt><dd><tt>Method&nbsp;representing&nbsp;the&nbsp;thread's&nbsp;activity.<br>
+&nbsp;<br>
+You&nbsp;may&nbsp;override&nbsp;this&nbsp;method&nbsp;in&nbsp;a&nbsp;subclass.&nbsp;The&nbsp;standard&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method<br>
+invokes&nbsp;the&nbsp;callable&nbsp;object&nbsp;passed&nbsp;to&nbsp;the&nbsp;object's&nbsp;constructor&nbsp;as&nbsp;the<br>
+target&nbsp;argument,&nbsp;if&nbsp;any,&nbsp;with&nbsp;sequential&nbsp;and&nbsp;keyword&nbsp;arguments&nbsp;taken<br>
+from&nbsp;the&nbsp;args&nbsp;and&nbsp;kwargs&nbsp;arguments,&nbsp;respectively.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="PubProxyRuntime-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="PubProxyRuntime-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PubProxyRuntime-isAlive"><strong>isAlive</strong></a> = is_alive(self)</dt><dd><tt>Return&nbsp;whether&nbsp;the&nbsp;thread&nbsp;is&nbsp;alive.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;True&nbsp;just&nbsp;before&nbsp;the&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method&nbsp;starts&nbsp;until&nbsp;just<br>
+after&nbsp;the&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method&nbsp;terminates.&nbsp;The&nbsp;module&nbsp;function&nbsp;enumerate()<br>
+returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;alive&nbsp;threads.</tt></dd></dl>
+
+<dl><dt><a name="PubProxyRuntime-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PubProxyRuntime-is_alive"><strong>is_alive</strong></a>(self)</dt><dd><tt>Return&nbsp;whether&nbsp;the&nbsp;thread&nbsp;is&nbsp;alive.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;True&nbsp;just&nbsp;before&nbsp;the&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method&nbsp;starts&nbsp;until&nbsp;just<br>
+after&nbsp;the&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method&nbsp;terminates.&nbsp;The&nbsp;module&nbsp;function&nbsp;enumerate()<br>
+returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;alive&nbsp;threads.</tt></dd></dl>
+
+<dl><dt><a name="PubProxyRuntime-join"><strong>join</strong></a>(self, timeout=None)</dt><dd><tt>Wait&nbsp;until&nbsp;the&nbsp;thread&nbsp;terminates.<br>
+&nbsp;<br>
+This&nbsp;blocks&nbsp;the&nbsp;calling&nbsp;thread&nbsp;until&nbsp;the&nbsp;thread&nbsp;whose&nbsp;<a href="#PubProxyRuntime-join">join</a>()&nbsp;method&nbsp;is<br>
+called&nbsp;terminates&nbsp;--&nbsp;either&nbsp;normally&nbsp;or&nbsp;through&nbsp;an&nbsp;unhandled&nbsp;exception<br>
+or&nbsp;until&nbsp;the&nbsp;optional&nbsp;timeout&nbsp;occurs.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;timeout&nbsp;argument&nbsp;is&nbsp;present&nbsp;and&nbsp;not&nbsp;None,&nbsp;it&nbsp;should&nbsp;be&nbsp;a<br>
+floating&nbsp;point&nbsp;number&nbsp;specifying&nbsp;a&nbsp;timeout&nbsp;for&nbsp;the&nbsp;operation&nbsp;in&nbsp;seconds<br>
+(or&nbsp;fractions&nbsp;thereof).&nbsp;As&nbsp;<a href="#PubProxyRuntime-join">join</a>()&nbsp;always&nbsp;returns&nbsp;None,&nbsp;you&nbsp;must&nbsp;call<br>
+<a href="#PubProxyRuntime-isAlive">isAlive</a>()&nbsp;after&nbsp;<a href="#PubProxyRuntime-join">join</a>()&nbsp;to&nbsp;decide&nbsp;whether&nbsp;a&nbsp;timeout&nbsp;happened&nbsp;--&nbsp;if&nbsp;the<br>
+thread&nbsp;is&nbsp;still&nbsp;alive,&nbsp;the&nbsp;<a href="#PubProxyRuntime-join">join</a>()&nbsp;call&nbsp;timed&nbsp;out.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;timeout&nbsp;argument&nbsp;is&nbsp;not&nbsp;present&nbsp;or&nbsp;None,&nbsp;the&nbsp;operation&nbsp;will<br>
+block&nbsp;until&nbsp;the&nbsp;thread&nbsp;terminates.<br>
+&nbsp;<br>
+A&nbsp;thread&nbsp;can&nbsp;be&nbsp;<a href="#PubProxyRuntime-join">join</a>()ed&nbsp;many&nbsp;times.<br>
+&nbsp;<br>
+<a href="#PubProxyRuntime-join">join</a>()&nbsp;raises&nbsp;a&nbsp;RuntimeError&nbsp;if&nbsp;an&nbsp;attempt&nbsp;is&nbsp;made&nbsp;to&nbsp;join&nbsp;the&nbsp;current<br>
+thread&nbsp;as&nbsp;that&nbsp;would&nbsp;cause&nbsp;a&nbsp;deadlock.&nbsp;It&nbsp;is&nbsp;also&nbsp;an&nbsp;error&nbsp;to&nbsp;<a href="#PubProxyRuntime-join">join</a>()&nbsp;a<br>
+thread&nbsp;before&nbsp;it&nbsp;has&nbsp;been&nbsp;started&nbsp;and&nbsp;attempts&nbsp;to&nbsp;do&nbsp;so&nbsp;raises&nbsp;the&nbsp;same<br>
+exception.</tt></dd></dl>
+
+<dl><dt><a name="PubProxyRuntime-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="PubProxyRuntime-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="PubProxyRuntime-start"><strong>start</strong></a>(self)</dt><dd><tt>Start&nbsp;the&nbsp;thread's&nbsp;activity.<br>
+&nbsp;<br>
+It&nbsp;must&nbsp;be&nbsp;called&nbsp;at&nbsp;most&nbsp;once&nbsp;per&nbsp;thread&nbsp;object.&nbsp;It&nbsp;arranges&nbsp;for&nbsp;the<br>
+object's&nbsp;<a href="#PubProxyRuntime-run">run</a>()&nbsp;method&nbsp;to&nbsp;be&nbsp;invoked&nbsp;in&nbsp;a&nbsp;separate&nbsp;thread&nbsp;of&nbsp;control.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;will&nbsp;raise&nbsp;a&nbsp;RuntimeError&nbsp;if&nbsp;called&nbsp;more&nbsp;than&nbsp;once&nbsp;on&nbsp;the<br>
+same&nbsp;thread&nbsp;object.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>daemon</strong></dt>
+<dd><tt>A&nbsp;boolean&nbsp;value&nbsp;indicating&nbsp;whether&nbsp;this&nbsp;thread&nbsp;is&nbsp;a&nbsp;daemon&nbsp;thread.<br>
+&nbsp;<br>
+This&nbsp;must&nbsp;be&nbsp;set&nbsp;before&nbsp;start()&nbsp;is&nbsp;called,&nbsp;otherwise&nbsp;RuntimeError&nbsp;is<br>
+raised.&nbsp;Its&nbsp;initial&nbsp;value&nbsp;is&nbsp;inherited&nbsp;from&nbsp;the&nbsp;creating&nbsp;thread;&nbsp;the<br>
+main&nbsp;thread&nbsp;is&nbsp;not&nbsp;a&nbsp;daemon&nbsp;thread&nbsp;and&nbsp;therefore&nbsp;all&nbsp;threads&nbsp;created&nbsp;in<br>
+the&nbsp;main&nbsp;thread&nbsp;default&nbsp;to&nbsp;daemon&nbsp;=&nbsp;False.<br>
+&nbsp;<br>
+The&nbsp;entire&nbsp;Python&nbsp;program&nbsp;exits&nbsp;when&nbsp;no&nbsp;alive&nbsp;non-daemon&nbsp;threads&nbsp;are<br>
+left.</tt></dd>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+<dd><tt>Thread&nbsp;identifier&nbsp;of&nbsp;this&nbsp;thread&nbsp;or&nbsp;None&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;been&nbsp;started.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;nonzero&nbsp;integer.&nbsp;See&nbsp;the&nbsp;get_ident()&nbsp;function.&nbsp;Thread<br>
+identifiers&nbsp;may&nbsp;be&nbsp;recycled&nbsp;when&nbsp;a&nbsp;thread&nbsp;exits&nbsp;and&nbsp;another&nbsp;thread&nbsp;is<br>
+created.&nbsp;The&nbsp;identifier&nbsp;is&nbsp;available&nbsp;even&nbsp;after&nbsp;the&nbsp;thread&nbsp;has&nbsp;exited.</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>A&nbsp;string&nbsp;used&nbsp;for&nbsp;identification&nbsp;purposes&nbsp;only.<br>
+&nbsp;<br>
+It&nbsp;has&nbsp;no&nbsp;semantics.&nbsp;Multiple&nbsp;threads&nbsp;may&nbsp;be&nbsp;given&nbsp;the&nbsp;same&nbsp;name.&nbsp;The<br>
+initial&nbsp;name&nbsp;is&nbsp;set&nbsp;by&nbsp;the&nbsp;constructor.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RouterProxyRuntime">class <strong>RouterProxyRuntime</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Proxies&nbsp;between&nbsp;the&nbsp;proxy-router&nbsp;and&nbsp;the&nbsp;backend-dealer&nbsp;sockets.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="proxy.html#RouterProxyRuntime">RouterProxyRuntime</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RouterProxyRuntime-__init__"><strong>__init__</strong></a>(self, ctx, kp, debug=False, pxy_ip='127.0.0.1', proxy_base_port=5561, be_ip='127.0.0.1', be_base_port=5563)</dt><dd><tt>Constructor<br>
+:param&nbsp;ctx:&nbsp;The&nbsp;raw&nbsp;ZMQ&nbsp;context&nbsp;to&nbsp;use.<br>
+:param&nbsp;kp:&nbsp;The&nbsp;keypair&nbsp;to&nbsp;use,&nbsp;in&nbsp;the&nbsp;form&nbsp;{'be_key':&nbsp;'[path]',&nbsp;'app_key':&nbsp;'[path]'}</tt></dd></dl>
+
+<dl><dt><a name="RouterProxyRuntime-run"><strong>run</strong></a>(self)</dt><dd><tt>Method&nbsp;representing&nbsp;the&nbsp;thread's&nbsp;activity.<br>
+&nbsp;<br>
+You&nbsp;may&nbsp;override&nbsp;this&nbsp;method&nbsp;in&nbsp;a&nbsp;subclass.&nbsp;The&nbsp;standard&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method<br>
+invokes&nbsp;the&nbsp;callable&nbsp;object&nbsp;passed&nbsp;to&nbsp;the&nbsp;object's&nbsp;constructor&nbsp;as&nbsp;the<br>
+target&nbsp;argument,&nbsp;if&nbsp;any,&nbsp;with&nbsp;sequential&nbsp;and&nbsp;keyword&nbsp;arguments&nbsp;taken<br>
+from&nbsp;the&nbsp;args&nbsp;and&nbsp;kwargs&nbsp;arguments,&nbsp;respectively.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="RouterProxyRuntime-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="RouterProxyRuntime-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RouterProxyRuntime-isAlive"><strong>isAlive</strong></a> = is_alive(self)</dt><dd><tt>Return&nbsp;whether&nbsp;the&nbsp;thread&nbsp;is&nbsp;alive.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;True&nbsp;just&nbsp;before&nbsp;the&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method&nbsp;starts&nbsp;until&nbsp;just<br>
+after&nbsp;the&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method&nbsp;terminates.&nbsp;The&nbsp;module&nbsp;function&nbsp;enumerate()<br>
+returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;alive&nbsp;threads.</tt></dd></dl>
+
+<dl><dt><a name="RouterProxyRuntime-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RouterProxyRuntime-is_alive"><strong>is_alive</strong></a>(self)</dt><dd><tt>Return&nbsp;whether&nbsp;the&nbsp;thread&nbsp;is&nbsp;alive.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;returns&nbsp;True&nbsp;just&nbsp;before&nbsp;the&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method&nbsp;starts&nbsp;until&nbsp;just<br>
+after&nbsp;the&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method&nbsp;terminates.&nbsp;The&nbsp;module&nbsp;function&nbsp;enumerate()<br>
+returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;alive&nbsp;threads.</tt></dd></dl>
+
+<dl><dt><a name="RouterProxyRuntime-join"><strong>join</strong></a>(self, timeout=None)</dt><dd><tt>Wait&nbsp;until&nbsp;the&nbsp;thread&nbsp;terminates.<br>
+&nbsp;<br>
+This&nbsp;blocks&nbsp;the&nbsp;calling&nbsp;thread&nbsp;until&nbsp;the&nbsp;thread&nbsp;whose&nbsp;<a href="#RouterProxyRuntime-join">join</a>()&nbsp;method&nbsp;is<br>
+called&nbsp;terminates&nbsp;--&nbsp;either&nbsp;normally&nbsp;or&nbsp;through&nbsp;an&nbsp;unhandled&nbsp;exception<br>
+or&nbsp;until&nbsp;the&nbsp;optional&nbsp;timeout&nbsp;occurs.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;timeout&nbsp;argument&nbsp;is&nbsp;present&nbsp;and&nbsp;not&nbsp;None,&nbsp;it&nbsp;should&nbsp;be&nbsp;a<br>
+floating&nbsp;point&nbsp;number&nbsp;specifying&nbsp;a&nbsp;timeout&nbsp;for&nbsp;the&nbsp;operation&nbsp;in&nbsp;seconds<br>
+(or&nbsp;fractions&nbsp;thereof).&nbsp;As&nbsp;<a href="#RouterProxyRuntime-join">join</a>()&nbsp;always&nbsp;returns&nbsp;None,&nbsp;you&nbsp;must&nbsp;call<br>
+<a href="#RouterProxyRuntime-isAlive">isAlive</a>()&nbsp;after&nbsp;<a href="#RouterProxyRuntime-join">join</a>()&nbsp;to&nbsp;decide&nbsp;whether&nbsp;a&nbsp;timeout&nbsp;happened&nbsp;--&nbsp;if&nbsp;the<br>
+thread&nbsp;is&nbsp;still&nbsp;alive,&nbsp;the&nbsp;<a href="#RouterProxyRuntime-join">join</a>()&nbsp;call&nbsp;timed&nbsp;out.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;timeout&nbsp;argument&nbsp;is&nbsp;not&nbsp;present&nbsp;or&nbsp;None,&nbsp;the&nbsp;operation&nbsp;will<br>
+block&nbsp;until&nbsp;the&nbsp;thread&nbsp;terminates.<br>
+&nbsp;<br>
+A&nbsp;thread&nbsp;can&nbsp;be&nbsp;<a href="#RouterProxyRuntime-join">join</a>()ed&nbsp;many&nbsp;times.<br>
+&nbsp;<br>
+<a href="#RouterProxyRuntime-join">join</a>()&nbsp;raises&nbsp;a&nbsp;RuntimeError&nbsp;if&nbsp;an&nbsp;attempt&nbsp;is&nbsp;made&nbsp;to&nbsp;join&nbsp;the&nbsp;current<br>
+thread&nbsp;as&nbsp;that&nbsp;would&nbsp;cause&nbsp;a&nbsp;deadlock.&nbsp;It&nbsp;is&nbsp;also&nbsp;an&nbsp;error&nbsp;to&nbsp;<a href="#RouterProxyRuntime-join">join</a>()&nbsp;a<br>
+thread&nbsp;before&nbsp;it&nbsp;has&nbsp;been&nbsp;started&nbsp;and&nbsp;attempts&nbsp;to&nbsp;do&nbsp;so&nbsp;raises&nbsp;the&nbsp;same<br>
+exception.</tt></dd></dl>
+
+<dl><dt><a name="RouterProxyRuntime-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="RouterProxyRuntime-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="RouterProxyRuntime-start"><strong>start</strong></a>(self)</dt><dd><tt>Start&nbsp;the&nbsp;thread's&nbsp;activity.<br>
+&nbsp;<br>
+It&nbsp;must&nbsp;be&nbsp;called&nbsp;at&nbsp;most&nbsp;once&nbsp;per&nbsp;thread&nbsp;object.&nbsp;It&nbsp;arranges&nbsp;for&nbsp;the<br>
+object's&nbsp;<a href="#RouterProxyRuntime-run">run</a>()&nbsp;method&nbsp;to&nbsp;be&nbsp;invoked&nbsp;in&nbsp;a&nbsp;separate&nbsp;thread&nbsp;of&nbsp;control.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;will&nbsp;raise&nbsp;a&nbsp;RuntimeError&nbsp;if&nbsp;called&nbsp;more&nbsp;than&nbsp;once&nbsp;on&nbsp;the<br>
+same&nbsp;thread&nbsp;object.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>daemon</strong></dt>
+<dd><tt>A&nbsp;boolean&nbsp;value&nbsp;indicating&nbsp;whether&nbsp;this&nbsp;thread&nbsp;is&nbsp;a&nbsp;daemon&nbsp;thread.<br>
+&nbsp;<br>
+This&nbsp;must&nbsp;be&nbsp;set&nbsp;before&nbsp;start()&nbsp;is&nbsp;called,&nbsp;otherwise&nbsp;RuntimeError&nbsp;is<br>
+raised.&nbsp;Its&nbsp;initial&nbsp;value&nbsp;is&nbsp;inherited&nbsp;from&nbsp;the&nbsp;creating&nbsp;thread;&nbsp;the<br>
+main&nbsp;thread&nbsp;is&nbsp;not&nbsp;a&nbsp;daemon&nbsp;thread&nbsp;and&nbsp;therefore&nbsp;all&nbsp;threads&nbsp;created&nbsp;in<br>
+the&nbsp;main&nbsp;thread&nbsp;default&nbsp;to&nbsp;daemon&nbsp;=&nbsp;False.<br>
+&nbsp;<br>
+The&nbsp;entire&nbsp;Python&nbsp;program&nbsp;exits&nbsp;when&nbsp;no&nbsp;alive&nbsp;non-daemon&nbsp;threads&nbsp;are<br>
+left.</tt></dd>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+<dd><tt>Thread&nbsp;identifier&nbsp;of&nbsp;this&nbsp;thread&nbsp;or&nbsp;None&nbsp;if&nbsp;it&nbsp;has&nbsp;not&nbsp;been&nbsp;started.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;nonzero&nbsp;integer.&nbsp;See&nbsp;the&nbsp;get_ident()&nbsp;function.&nbsp;Thread<br>
+identifiers&nbsp;may&nbsp;be&nbsp;recycled&nbsp;when&nbsp;a&nbsp;thread&nbsp;exits&nbsp;and&nbsp;another&nbsp;thread&nbsp;is<br>
+created.&nbsp;The&nbsp;identifier&nbsp;is&nbsp;available&nbsp;even&nbsp;after&nbsp;the&nbsp;thread&nbsp;has&nbsp;exited.</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>A&nbsp;string&nbsp;used&nbsp;for&nbsp;identification&nbsp;purposes&nbsp;only.<br>
+&nbsp;<br>
+It&nbsp;has&nbsp;no&nbsp;semantics.&nbsp;Multiple&nbsp;threads&nbsp;may&nbsp;be&nbsp;given&nbsp;the&nbsp;same&nbsp;name.&nbsp;The<br>
+initial&nbsp;name&nbsp;is&nbsp;set&nbsp;by&nbsp;the&nbsp;constructor.</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Parses&nbsp;command&nbsp;line&nbsp;input&nbsp;and&nbsp;then&nbsp;runs&nbsp;PubProxy&nbsp;and&nbsp;RouterProxy.</tt></dd></dl>
+ <dl><dt><a name="-tprint"><strong>tprint</strong></a>(msg)</dt><dd><tt>Print&nbsp;immediately&nbsp;with&nbsp;newline.<br>
+:param&nbsp;msg:&nbsp;The&nbsp;text&nbsp;to&nbsp;be&nbsp;printed.</tt></dd></dl>
+ <dl><dt><a name="-tprintn"><strong>tprintn</strong></a>(msg)</dt><dd><tt>Print&nbsp;immediately&nbsp;without&nbsp;newline.<br>
+:param&nbsp;msg:&nbsp;The&nbsp;text&nbsp;to&nbsp;be&nbsp;printed.</tt></dd></dl>
+</td></tr></table>
+</body></html>
