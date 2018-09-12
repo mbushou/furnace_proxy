@@ -1,7 +1,7 @@
 Furnace Message Proxy
 =======
 
-<img align="right" width=20% src="https://github.ncsu.edu/mbushou/furnace/blob/master/misc/logo_smoke_sm.png">
+<img align="right" width=20% src="https://github.com/mbushou/furnace/blob/master/misc/logo_smoke_sm.png">
 
 Introduction
 -------
@@ -14,7 +14,7 @@ connecting to a single backend would require six message proxy instances.
 
 Please see ./docs for the pydoc documentation.
 
-For more information on the Furnace project, visit its [main repository](https://github.ncsu.edu/mbushou/furnace).
+For more information on the Furnace project, visit its [main repository](https://github.com/mbushou/furnace).
 
 Installation
 -------
